@@ -1,22 +1,24 @@
 package com.emi.metric.util;
 
 import com.emi.metric.model.Transaction;
-import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import java.util.DoubleSummaryStatistics;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Emi on 25/07/2017.
+ * Test cases to validate functionalities of MetricUtil
  */
 public class MetricUtilTest {
 
     private static final double DELTA = 1e-15;
     private final MetricUtil streamMetric = MetricUtil.getInstance();
 
-    @Before
-    public void setup() {
+    @After
+    public void teardown() {
         streamMetric.clearAllTransactions();
     }
 
@@ -82,5 +84,24 @@ public class MetricUtilTest {
         assertEquals(0, stats.getSum(), DELTA);
         assertEquals(0, stats.getAverage(), DELTA);
         assertEquals(0, stats.getCount());
+    }
+
+    @Test
+    public void shallAValidTimestamp(){
+        long currentTime = streamMetric.getCurrentEpocTime();
+        assertTrue(streamMetric.isValidTimestamp(currentTime));
+    }
+
+    @Test
+    public void shallNotAValidTimestamp(){
+        long currentTime = streamMetric.getCurrentEpocTime() - 800000;
+        assertFalse(streamMetric.isValidTimestamp(currentTime));
+    }
+
+    @Test
+    public void shallSixtySecondsTimestampEarlier(){
+        long sixtySecondsEarlier = streamMetric.getSixtySecondsEarlier();
+        long currentTime = streamMetric.getCurrentEpocTime();
+        assertTrue((currentTime - 60000) >= sixtySecondsEarlier);
     }
 }

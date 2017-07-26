@@ -13,6 +13,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by Emi on 24/07/2017.
+ * Class utility for add valid transaction, remove older transaction and get the statistic from the last 60 seconds
  */
 public final class MetricUtil {
 

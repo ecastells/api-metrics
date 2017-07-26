@@ -18,6 +18,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * Created by Emi on 25/07/2017.
+ * Test cases to validate functionalities of TransactionController
  */
 public class TransactionControllerTest {
     private TransactionController transactionController;

@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Created by Emi on 24/07/2017.
+ * Swagger configuration. http://localhost:8080/swagger-ui.html#/transaction-controller
  */
 @Configuration
 @EnableSwagger2

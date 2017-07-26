@@ -15,6 +15,9 @@ import java.net.HttpURLConnection;
 
 /**
  * Created by Emi on 24/07/2017.
+ * Provide a Rest Operation Calculate realtime statistic from the last 60 seconds
+ * POST /metric/transactions - Add a new Transaction
+ * GET /metric/statistics - Returns the statistic based of the transactions of the last 60 seconds
  */
 @RestController
 @RequestMapping("/metric")
